@@ -1,45 +1,51 @@
 //--- Date Stuff
+function curSemester(fall, spr, sum) {
   //--- FORMAT: MMDD e.g., August 22 is 0822
-  var fallStartDateDash = 831; // Fall: August 31 - December 31
+  var fallStartDateDash = fall; // Fall: August 31 - December 31
   var fallEndDateDash = 1231;
   var winBreakDateDash = 101; // Rollover for numeric value of dates because of new year
-  var winBreakDateEndDash = 124;
-  var sprStartDateDash = 125; // Spring: January 25 - May 30
-  var sprEndDateDash = 530;
-  var sumStartDateDash = 531; // Summer: May 31 - August 30
-  var sumEndDateDash = 830;
+  var winBreakDateEndDash = spr - 1;
+  var sprStartDateDash = spr; // Spring: January 25 - May 30
+  var sprEndDateDash = sum - 1;
+  var sumStartDateDash = sum; // Summer: May 31 - August 30
+  var sumEndDateDash = fall - 1;
   var fullDateDash = new Date();
+  var timeDash = fullDateDash.getTime();
   var dateDash = fullDateDash.getDate();
-  var monthDash = fullDateDash.getMonth()+1;
+  var monthDash = fullDateDash.getMonth() + 1;
   var yearDash = fullDateDash.getFullYear();
-  var yearDashWin = fullDateDash.getFullYear()-1;
-
-  if (dateDash <= 9) { 
-    dateDashString = '0' + dateDash.toString(); 
-  } else { 
-    dateDashString = dateDash.toString(); 
+  var yearDashWin = fullDateDash.getFullYear() - 1;
+  if (dateDash <= 9) {
+    var dateDashString = '0' + dateDash.toString();
+  } else {
+    var dateDashString = dateDash.toString();
   }
-  curDateDashPre = monthDash.toString() + dateDashString;
-  curDateDash = parseInt(curDateDashPre);
-
+  var curDateDashPre = monthDash.toString() + dateDashString;
+  var curDateDash = parseInt(curDateDashPre);
   if (curDateDash >= fallStartDateDash && curDateDash <= fallEndDateDash) {
-    console.log('Fall');
-//--- change an object with the id 'semesterheading' to include semester   
-    document.getElementById("semesterheading").innerHTML = 'Fall ' + yearDashWin; 
+    return 'Fall' + yearDash
+    //--- TNS specific usage 
+    // curSemDash = '201510';
+    // document.getElementById("coursesdashtitle").innerHTML = 'Fall ' + yearDash;
   }
   if (curDateDash >= winBreakDateDash && curDateDash <= winBreakDateEndDash) {
-    console.log('Fall');
-//--- change an object with the id 'semesterheading' to include semester      
-    document.getElementById("semesterheading").innerHTML = 'Fall ' + yearDashWin;
+    return 'Fall' + yearDash
+    //--- TNS specific usage
+    // curSemDash = '201510';
+    // document.getElementById("coursesdashtitle").innerHTML = 'Fall ' + yearDashWin;
   }
   if (curDateDash >= sprStartDateDash && curDateDash <= sprEndDateDash) {
-    console.log('Spring');
-//--- change an object with the id 'semesterheading' to include semester      
-    document.getElementById("semesterheading").innerHTML = 'Spring ' + yearDash;
+    return 'Spring' + yearDash
+    //--- TNS specific usage 
+    //curSemDash = '201530';
+    //document.getElementById("coursesdashtitle").innerHTML = 'Spring ' + yearDash;
   }
   if (curDateDash >= sumStartDateDash && curDateDash <= sumEndDateDash) {
-    console.log('Summer');
-//--- change an object with the id 'semesterheading' to include semester  
-    document.getElementById("semesterheading").innerHTML = 'Summer ' + yearDash;
+    return 'Summer' + yearDash
+    //--- TNS specific usage 
+    //curSemDash = '201540';
+    //document.getElementById("coursesdashtitle").innerHTML = 'Summer ' + yearDash;
   }
-//--- End Date Stuff
+}
+
+curSemester(831,111,531);
